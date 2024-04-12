@@ -7,6 +7,7 @@ import { Island } from "../models/Island";
 import { Sky } from "../models/Sky";
 import { Color } from "three";
 import { colors } from "@react-spring/shared";
+import { OrbitControls, ScrollControls } from "@react-three/drei";
 {
   /* <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center ">
 Popup
@@ -16,8 +17,7 @@ const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
   const adjustSpaceForScreenSize = () => {
     let screenScale;
-    let screenPostion = [0, -6.5, -43];
-    let rotation = [0.1, 4.7, 0];
+    let screenPostion = [0, -10, -43];
     if (window.innerWidth < 768) {
       screenScale = [0.9, 0.9, 0.9];
     } else {
@@ -32,17 +32,9 @@ const Home = () => {
         className={`w-full h-screen bg-black ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
         }`}
-        camera={{ near: 0.1, far: 1000 }}
+        // camera={{ near: 0.1, far: 1000 }}
       >
         <Suspense fallback={<Loader />}>
-          <directionalLight
-            position={[10, 10, 1]}
-            intensity={1}
-            color={colors.red}
-          />
-          <ambientLight intensity={1} color={0x0000ff} />
-          <pointLight intensity={1} color={0x0000ff} />
-          <spotLight intensity={1} color={0x0000ff} />
           <Space
             position={spacePosition}
             scale={spaceScale}
